@@ -110,10 +110,10 @@ public class Board extends View {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
 
-                int x = (int) (event.getX() / cellWidth);
-                int y = (int) (event.getY() / cellWidth);
+                int i = (int) (event.getX() / cellWidth);
+                int j = (int) (event.getY() / cellWidth);
 
-                board[x][y] = !board[x][y];
+                board[i][j] = !board[i][j];
 
                 // redraw the board
                 invalidate();
