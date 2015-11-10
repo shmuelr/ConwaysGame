@@ -22,4 +22,27 @@
         android:layout_height="wrap_content" />
 
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/changeButton"
+            android:text="Change grid size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/boardSizeInput"
+            android:text="15"
+            android:inputType="number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
 </LinearLayout>

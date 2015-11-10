@@ -4,13 +4,16 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.shmuelrosansky.conwaysgame.views.Board;
 
 public class MainActivity extends AppCompatActivity {
 
     private Board gameBoard;
+    private EditText sizeInput;
     private AsyncTask gameLoop;
+    int boardSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +23,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpGUI() {
+
+        sizeInput = (EditText)findViewById(R.id.boardSizeInput);
+        boardSize = Integer.parseInt(sizeInput.getText().toString());
+
         gameBoard = (Board)findViewById(R.id.board);
-        gameBoard.initBoard(20);
+        gameBoard.initBoard(boardSize);
 
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +37,18 @@ public class MainActivity extends AppCompatActivity {
                     stopGame();
                 } else {
                     runGame();
+                }
+            }
+        });
+
+        findViewById(R.id.changeButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newSize = Integer.parseInt(sizeInput.getText().toString());
+                if(newSize != boardSize){
+                    boardSize = newSize;
+                    gameBoard.initBoard(boardSize);
+                    gameBoard.invalidate();
                 }
             }
         });
@@ -45,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void runGame(){
         gameLoop = new AsyncTask<boolean[][], boolean[][], Void>(){
+
+
 
             @Override
             protected Void doInBackground(boolean[][]... params) {
